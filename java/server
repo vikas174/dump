@@ -1,0 +1,54 @@
+
+import java.io.*;  
+import java.net.*;  
+public class MyServer
+{  
+public static void main(String[] args)
+{  
+try
+   {  
+ServerSocketss=new ServerSocket(6666);  
+     Socket s=ss.accept();//establishes connection   
+DataInputStream dis=new DataInputStream(s.getInputStream());  
+String  str=(String)dis.readUTF();  
+System.out.println("message= "+str);  
+ss.close();  
+   }
+
+catch(Exception e)
+   {
+System.out.println(e);
+   }  
+}  
+}
+
+Note:
+1)  First compile MyServer.java file then compile MyClient.java file .
+2)  Then first interpret MyClient.class file then interpret MyServer.class file.
+
+MyClient.java
+
+import java.io.*;
+import java.net.*;  
+
+classMyClient
+{  
+public static void main(String[] args) 
+{  
+try
+  {      
+    Socket s=new Socket("localhost",6666);  
+DataOutputStreamdout=new DataOutputStream(s.getOutputStream());  
+dout.writeUTF("Hello Server");  
+dout.flush();  
+dout.close();  
+s.close();  
+  }
+
+catch(Exception e)
+  {
+System.out.println(e);
+  }  
+}  
+}  
+
