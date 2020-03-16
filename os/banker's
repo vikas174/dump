@@ -1,0 +1,125 @@
+
+import java.io.*;
+class Banker
+{
+int avail[];
+int max[][] = { {3,2,2,1}, {8,12,0,0}, {2,1,0,0}, {4,3,0,0}, {2,0,3,1}};
+intalloc[][] = { {1,1,1,0}, {2,1,0,0}, {1,0,0,0}, {2,1,0,0}, {1,0,0,0}};
+int need[][];
+intm,n;
+Banker()
+{
+m = 4;
+n = 5;
+avail = new int[4];
+avail[0] = 16; // Number of Registers
+avail[1] = 50; // Number of Files
+avail[2] = 5; // Number of Ports
+avail[3] = 2; // Number of Printer
+need = new int[5][4];
+for(int i=0;i<5; i++)
+for(int j=0;j<4; j++)
+need[i][j] = max[i][j] ‐alloc[i][j];
+}
+booleanisSafe()
+{
+int work[] = new int[m];
+boolean finish[] = new boolean[n];
+for(int i=0 ;i<m; i++)
+work[i] = avail[i];
+for(int i=0 ;i<n; i++)
+finish[i] = false;
+for(int i=0; i<n; i++)
+{
+if(finish[i]==false)
+{
+boolean incomplete=false;
+for(int j=0;j<m; j++)
+{
+if(need[i][j]>work[j])
+{
+incomplete = true;
+//System.out.println(i + ":" + j + ":" + need[i][j] + ":" + work[j]);
+}
+if(need[i][j]!=0 && need[i][j]<=work[j])
+{
+work[j] = work[j] ‐ need[i][j];
+}
+}
+if(!incomplete)
+{
+finish[i]=true;
+}
+if(finish[i])
+System.out.println("Process " + i + " can be completed");
+else
+System.out.println("Process " + i + " can't be completed");
+}
+}
+for(int i=0; i<n; i++)
+{
+if(!finish[i])
+{
+return false;
+}
+}
+return true;
+}
+voidresourceRequest()
+{
+int request[][] = { {1,1,1,0}, {2,2,0,0}, {1,1,0,1}, {1,1,0,0}, {1,0,0,0}};
+boolean safe=true;
+for(int i=0; i<n; i++)
+{
+for(int j=0;j<m; j++)
+{
+if(request[i][j]<=need[i][j])
+{
+if(request[i][j]<=avail[j])
+{
+avail[j] = avail[j] ‐ request[i][j];
+alloc[i][j] = alloc[i][j] + request[i][j];
+need[i][j] = need[i][j] ‐ request[i][j];
+}
+else
+{
+System.out.println("Hey process " + i + "! resource " + j + " is not available now...try again
+later...");
+}
+}
+else
+{
+System.out.println("Process " + i + " has exceeded request for resource " + j + " hence is
+unsafe");
+safe = false;
+}
+}
+}
+if(safe)
+{
+System.out.println("the system is safe...");
+}
+else
+{
+System.out.println("the system is unsafe...");
+}
+}
+}
+class OS2
+{
+public static void main(String args[]) throws Exception
+{
+Banker b = new Banker();
+System.out.println("Applying safety algorithm...");
+if(b.isSafe())
+{
+System.out.println("The system is in safe state...");
+}
+else
+{
+System.out.println("The system is not in safe state....");
+}
+System.out.println("Applying resource request algo...");
+b.resourceRequest();
+}
+}
