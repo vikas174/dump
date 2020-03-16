@@ -1,0 +1,43 @@
+
+import java.awt.*;
+importjava.awt.event.*;
+classEvenOdd extends Frame implements ActionListener
+{
+   Label lblnum,lblResult;
+TextFieldtxtnum;
+   Button btnDisplay;
+
+EvenOdd()
+    {
+	setLayout(new FlowLayout());
+	lblnum=new Label("Enter number");
+	lblResult=new Label("");
+	txtnum=new TextField();
+	btnDisplay=new Button("Even/Odd");
+add(lblnum);
+	add(txtnum);
+	add(btnDisplay);
+	add(lblResult);
+btnDisplay.addActionListener(this);
+setSize(300,300);
+	setVisible(true);
+   }
+
+public void actionPerformed(ActionEvent e)
+{
+intnum=Integer.parseInt(txtnum.getText());
+		
+if(e.getSource()==btnDisplay)
+    {
+	if(num%2==0)
+	lblResult.setText("The number is even");
+	else
+	lblResult.setText("The number is odd");
+    }	
+}
+
+public static void main(String args[])
+ {
+newEvenOdd();
+ }
+}
