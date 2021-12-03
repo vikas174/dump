@@ -18,3 +18,5 @@ if (isSubsetSum(set, n, sum) == True) :
 else : 
     print("No subset with given sum") 
 
+o/p:-
+    Found a subset with given sum
