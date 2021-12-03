@@ -19,3 +19,11 @@ n=len(arr)
 print("sorted array is")
 for i in  range(n):
     print("%d"%arr[i])
+
+    O/P:-sorted array is
+11
+13
+5
+6
+7
+12
