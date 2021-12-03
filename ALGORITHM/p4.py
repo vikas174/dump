@@ -38,3 +38,5 @@ x = [0.897, 0.565, 0.656,
 print("Sorted Array is") 
 print(bucketSort(x)) 
 
+o/p:-Sorted Array is
+[0.1234, 0.3434, 0.565, 0.656, 0.665, 0.897]
