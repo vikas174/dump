@@ -19,3 +19,7 @@ def countSort(arr):
 arr = "geeksforgeeks"
 ans = countSort(arr) 
 print ("Sorted character array is %s" %("".join(ans)))
+
+
+o/p:-
+Sorted character array is eeeefggkkorss    
